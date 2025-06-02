@@ -1,2 +1,3 @@
-# mobility-platform
-A Mobility Data Connector
+# Mobility Platform
+
+Refer to openapi.yaml for REST API specs.
