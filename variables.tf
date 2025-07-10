@@ -1,26 +1,21 @@
-# Variables for MDS Provider API Infrastructure
+# Terraform Variables for Circuit Provider API Infrastructure
 
 variable "aws_region" {
-  description = "AWS region for deploying the MDS Provider API infrastructure"
+  description = "AWS region for deployment"
   type        = string
   default     = "us-west-2"
 }
 
 variable "environment" {
-  description = "Environment name (e.g., dev, staging, prod)"
+  description = "Environment name (dev, staging, prod)"
   type        = string
   default     = "dev"
-  
-  validation {
-    condition = contains(["dev", "staging", "prod"], var.environment)
-    error_message = "Environment must be one of: dev, staging, prod."
-  }
 }
 
 variable "project_name" {
-  description = "Name of the project for resource naming and tagging"
+  description = "Name of the project"
   type        = string
-  default     = "mds-provider-api"
+  default     = "circuit-provider-api"
 }
 
 variable "vpc_cidr" {
@@ -112,15 +107,15 @@ variable "mds_version" {
 }
 
 variable "provider_id" {
-  description = "Unique provider ID for MDS compliance"
+  description = "MDS Provider UUID"
   type        = string
   default     = "00000000-0000-0000-0000-000000000000"
 }
 
 variable "provider_name" {
-  description = "Name of the mobility provider"
+  description = "Provider name for MDS compliance"
   type        = string
-  default     = "Example Mobility Provider"
+  default     = "Circuit Mobility Provider"
 }
 
 variable "supported_modes" {

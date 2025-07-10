@@ -1,4 +1,4 @@
-# API Gateway Resources for MDS Provider API Endpoints
+# API Gateway Resources for Circuit Provider API Endpoints
 
 # API Gateway Authorizer for Bearer Token Authentication
 resource "aws_api_gateway_authorizer" "mds_authorizer" {

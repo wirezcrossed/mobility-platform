@@ -1,10 +1,9 @@
 """
-MDS Provider API Authentication Lambda Function
-Validates bearer tokens for MDS API access
+Circuit Provider API Authentication Lambda
+Bearer token authentication for MDS 2.0 compliant API
 """
 
 import json
-import os
 import logging
 from typing import Dict, Any
 
@@ -12,20 +11,16 @@ from typing import Dict, Any
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-# Environment variables
-MDS_VERSION = os.environ.get('MDS_VERSION', '2.0.2')
-PROVIDER_ID = os.environ.get('PROVIDER_ID', '00000000-0000-0000-0000-000000000000')
-
-# Valid tokens for demonstration (in production, use a secure token store)
+# Valid API tokens - In production, these should be stored in a database or secrets manager
 VALID_TOKENS = {
-    'mds-token-12345': {
+    'circuit-token-12345': {
         'agency_id': 'city-of-example',
         'permissions': ['vehicles:read', 'trips:read', 'events:read', 'reports:read'],
         'rate_limit': 1000
     },
-    'mds-token-67890': {
-        'agency_id': 'county-transport',
-        'permissions': ['vehicles:read', 'trips:read'],
+    'circuit-token-67890': {
+        'agency_id': 'city-of-demo',
+        'permissions': ['vehicles:read', 'status:read'],
         'rate_limit': 500
     }
 }
@@ -127,8 +122,8 @@ def generate_policy(principal_id: str, effect: str, resource: str, context: Dict
             'agency_id': context['agency_id'],
             'permissions': ','.join(context['permissions']),
             'rate_limit': str(context['rate_limit']),
-            'mds_version': MDS_VERSION,
-            'provider_id': PROVIDER_ID
+            'mds_version': '2.0.2', # MDS_VERSION removed, hardcode for now
+            'provider_id': '00000000-0000-0000-0000-000000000000' # PROVIDER_ID removed, hardcode for now
         }
     }
     

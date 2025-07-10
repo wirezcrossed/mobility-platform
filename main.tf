@@ -1,4 +1,4 @@
-# MDS Provider API Infrastructure
+# Circuit Provider API Infrastructure
 # Terraform configuration for OMF Mobility Data Specification compliant Provider API
 
 terraform {
@@ -21,7 +21,7 @@ provider "aws" {
   
   default_tags {
     tags = {
-      Project     = "MDS-Provider-API"
+      Project     = "Circuit-Provider-API"
       Environment = var.environment
       ManagedBy   = "Terraform"
       Purpose     = "OMF-MDS-2.0-Compliance"

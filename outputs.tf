@@ -1,7 +1,7 @@
-# Outputs for MDS Provider API Infrastructure
+# Outputs for Circuit Provider API Infrastructure
 
 output "api_gateway_url" {
-  description = "Base URL for the MDS Provider API"
+  description = "Base URL for the Circuit Provider API"
   value       = "https://${aws_api_gateway_rest_api.mds_api.id}.execute-api.${var.aws_region}.amazonaws.com/${var.environment}"
 }
 
@@ -11,7 +11,7 @@ output "api_gateway_id" {
 }
 
 output "api_endpoints" {
-  description = "Available API endpoints"
+  description = "Circuit Provider API endpoint URLs"
   value = {
     vehicles = "https://${aws_api_gateway_rest_api.mds_api.id}.execute-api.${var.aws_region}.amazonaws.com/${var.environment}/vehicles"
     trips    = "https://${aws_api_gateway_rest_api.mds_api.id}.execute-api.${var.aws_region}.amazonaws.com/${var.environment}/trips"

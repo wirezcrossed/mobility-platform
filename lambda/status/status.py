@@ -1,6 +1,6 @@
 """
-MDS Provider API Status Endpoint
-Returns API status and health information
+Circuit Provider API Status Endpoint
+Returns API status and health information compliant with MDS 2.0
 """
 
 import json
@@ -16,7 +16,7 @@ logger.setLevel(logging.INFO)
 # Environment variables
 MDS_VERSION = os.environ.get('MDS_VERSION', '2.0.2')
 PROVIDER_ID = os.environ.get('PROVIDER_ID')
-PROVIDER_NAME = os.environ.get('PROVIDER_NAME', 'Example Mobility Provider')
+PROVIDER_NAME = os.environ.get('PROVIDER_NAME', 'Circuit Mobility Provider')
 
 def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     """

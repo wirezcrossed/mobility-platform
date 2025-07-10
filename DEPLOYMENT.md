@@ -1,6 +1,6 @@
-# MDS Provider API Deployment Guide
+# Circuit Provider API Deployment Guide
 
-This guide explains how to deploy and configure the MDS Provider API infrastructure using Terraform on AWS.
+This guide explains how to deploy and configure the Circuit Provider API infrastructure using Terraform on AWS.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ This guide explains how to deploy and configure the MDS Provider API infrastruct
 1. **Clone and configure the project:**
    ```bash
    git clone <repository-url>
-   cd mds-provider-api
+   cd circuit-provider-api
    ```
 
 2. **Configure variables:**
@@ -40,11 +40,11 @@ Create a `terraform.tfvars` file with the following variables:
 # Basic Configuration
 aws_region     = "us-west-2"
 environment    = "dev"
-project_name   = "mds-provider-api"
+project_name   = "circuit-provider-api"
 
 # MDS Configuration
 provider_id     = "your-uuid-here"
-provider_name   = "Your Mobility Provider"
+provider_name   = "Circuit Mobility Provider"
 mds_version     = "2.0.2"
 
 # Network Configuration
@@ -52,8 +52,8 @@ vpc_cidr           = "10.0.0.0/16"
 availability_zones = ["us-west-2a", "us-west-2b"]
 
 # Database Configuration
-database_name         = "mds_provider"
-database_username     = "mds_admin"
+database_name         = "circuit_provider"
+database_username     = "circuit_admin"
 postgres_version      = "15.4"
 db_instance_class     = "db.t3.micro"
 db_allocated_storage  = 20
@@ -155,7 +155,7 @@ The API uses bearer token authentication. Valid tokens are currently configured 
 Example token configuration:
 ```python
 VALID_TOKENS = {
-    'mds-token-12345': {
+    'circuit-token-12345': {
         'agency_id': 'city-of-example',
         'permissions': ['vehicles:read', 'trips:read', 'events:read', 'reports:read'],
         'rate_limit': 1000
@@ -168,7 +168,7 @@ VALID_TOKENS = {
 Include the bearer token in the Authorization header:
 
 ```bash
-curl -H "Authorization: Bearer mds-token-12345" \
+curl -H "Authorization: Bearer circuit-token-12345" \
      https://your-api-url/vehicles
 ```
 
@@ -179,7 +179,7 @@ curl -H "Authorization: Bearer mds-token-12345" \
 The RDS PostgreSQL database is created automatically, but you'll need to create the initial schema. Connect to the database and run:
 
 ```sql
--- Example tables for MDS data
+-- Example tables for Circuit MDS data
 CREATE TABLE vehicles (
     device_id VARCHAR(255) PRIMARY KEY,
     provider_id UUID NOT NULL,
@@ -237,7 +237,7 @@ To connect to the database:
 ```bash
 # Get database credentials
 aws secretsmanager get-secret-value \
-    --secret-id mds-provider-api-db-credentials \
+    --secret-id circuit-provider-api-db-credentials \
     --query SecretString --output text | jq -r .
 ```
 
@@ -252,14 +252,14 @@ curl https://your-api-url/status
 ### Test Vehicles Endpoint
 
 ```bash
-curl -H "Authorization: Bearer mds-token-12345" \
+curl -H "Authorization: Bearer circuit-token-12345" \
      "https://your-api-url/vehicles?bbox=-122.5,37.7,-122.3,37.8"
 ```
 
 ### Test Trips Endpoint
 
 ```bash
-curl -H "Authorization: Bearer mds-token-12345" \
+curl -H "Authorization: Bearer circuit-token-12345" \
      "https://your-api-url/trips?start_time=1642694400000"
 ```
 
@@ -270,12 +270,12 @@ curl -H "Authorization: Bearer mds-token-12345" \
 All Lambda functions log to CloudWatch. Access logs via:
 
 - AWS Console: CloudWatch > Log groups
-- AWS CLI: `aws logs describe-log-groups --log-group-name-prefix "/aws/lambda/mds-provider-api"`
+- AWS CLI: `aws logs describe-log-groups --log-group-name-prefix "/aws/lambda/circuit-provider-api"`
 
 ### API Gateway Logs
 
 API Gateway access logs are available in CloudWatch under:
-- Log group: `/aws/apigateway/mds-provider-api`
+- Log group: `/aws/apigateway/circuit-provider-api`
 
 ### Monitoring Dashboards
 
@@ -314,10 +314,10 @@ Consider setting up CloudWatch dashboards to monitor:
 terraform state list
 
 # View Lambda function logs
-aws logs tail /aws/lambda/mds-provider-api-vehicles --follow
+aws logs tail /aws/lambda/circuit-provider-api-vehicles --follow
 
 # Test database connectivity
-aws rds describe-db-instances --db-instance-identifier mds-provider-api-database
+aws rds describe-db-instances --db-instance-identifier circuit-provider-api-database
 
 # Check API Gateway deployment
 aws apigateway get-deployments --rest-api-id <api-id>

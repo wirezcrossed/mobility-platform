@@ -1,5 +1,5 @@
 """
-MDS Provider API Trips Endpoint
+Circuit Provider API Trips Endpoint
 Returns historical trip data compliant with MDS 2.0
 """
 
@@ -20,7 +20,7 @@ logger.setLevel(logging.INFO)
 DB_SECRET_ARN = os.environ.get('DB_SECRET_ARN')
 MDS_VERSION = os.environ.get('MDS_VERSION', '2.0.2')
 PROVIDER_ID = os.environ.get('PROVIDER_ID')
-PROVIDER_NAME = os.environ.get('PROVIDER_NAME', 'Example Mobility Provider')
+PROVIDER_NAME = os.environ.get('PROVIDER_NAME', 'Circuit Mobility Provider')
 
 # AWS clients
 secrets_client = boto3.client('secretsmanager')

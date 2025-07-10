@@ -1,10 +1,10 @@
-# MDS Provider API Infrastructure
+# Circuit Provider API Infrastructure
 
-This project implements a Mobility Data Specification (MDS) 2.0 compliant Provider API using Terraform for infrastructure as code. The API follows the Open Mobility Foundation (OMF) specification for mobility data sharing between cities and mobility providers.
+This project implements a Mobility Data Specification (MDS) 2.0 compliant Provider API using Terraform for infrastructure as code. The Circuit Provider API follows the Open Mobility Foundation (OMF) specification for mobility data sharing between cities and mobility providers.
 
 ## Overview
 
-The MDS Provider API enables mobility providers to share real-time data about their vehicles, trips, and events with city agencies for regulation and management of shared mobility services in the public right-of-way.
+The Circuit Provider API enables Circuit and other mobility providers to share real-time data about their vehicles, trips, and events with city agencies for regulation and management of shared mobility services in the public right-of-way.
 
 ## Features
 

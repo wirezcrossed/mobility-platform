@@ -1,26 +1,26 @@
 openapi: 3.0.3
 info:
-  title: MDS Provider API
+  title: Circuit Provider API
   description: |
-    Mobility Data Specification (MDS) 2.0 compliant Provider API
+    Mobility Data Specification (MDS) 2.0 compliant Provider API for Circuit
     
-    The MDS Provider API enables mobility providers to share real-time data about their vehicles, 
+    The Circuit Provider API enables Circuit to share real-time data about their vehicles, 
     trips, and events with city agencies for regulation and management of shared mobility services 
     in the public right-of-way.
     
     This API follows the Open Mobility Foundation (OMF) specification version 2.0.2.
   version: 2.0.2
   contact:
-    name: MDS Provider API Support
-    email: support@example.com
+    name: Circuit Provider API Support
+    email: support@circuit.com
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 
 servers:
-  - url: https://api.example.com/mds/v2
+  - url: https://api.circuit.com/mds/v2
     description: Production server
-  - url: https://staging-api.example.com/mds/v2
+  - url: https://staging-api.circuit.com/mds/v2
     description: Staging server
 
 security:
